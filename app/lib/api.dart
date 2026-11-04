@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 SupabaseClient get sb => Supabase.instance.client;
@@ -28,9 +29,14 @@ class MatchStatus {
 }
 
 class Api {
-  // ---------------- Authentification (code à 6 chiffres par e-mail) ----------------
-  static Future<void> sendCode(String email) =>
-      sb.auth.signInWithOtp(email: email.trim(), shouldCreateUser: true);
+  // ---------------- Authentification (lien ou code par e-mail) ----------------
+  /// Le lien du mail ramène sur l'app web (session récupérée depuis l'URL).
+  /// Si le modèle d'e-mail contient {{ .Token }} (SMTP perso), le code marche aussi.
+  static Future<void> sendCode(String email) => sb.auth.signInWithOtp(
+        email: email.trim(),
+        shouldCreateUser: true,
+        emailRedirectTo: kIsWeb ? Uri.base.origin : 'fr.slowdate://login-callback',
+      );
 
   static Future<void> verifyCode(String email, String code) =>
       sb.auth.verifyOTP(email: email.trim(), token: code.trim(), type: OtpType.email);
