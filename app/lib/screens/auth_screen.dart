@@ -76,9 +76,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: const Text(
-                        'E-mail envoyé. Ouvrez-le sur cet appareil et touchez le lien : '
-                        'vous serez connecté·e automatiquement.\n\n'
-                        'Si l\'e-mail contient un code à la place, saisissez-le ci-dessous.',
+                        'E-mail envoyé ! Saisissez le code à 6 chiffres qu\'il contient, '
+                        'ou touchez son bouton depuis cet appareil.',
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -88,7 +87,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       autofillHints: const [AutofillHints.oneTimeCode],
                       maxLength: 8,
                       decoration: const InputDecoration(
-                        labelText: 'Code (facultatif)',
+                        labelText: 'Code à 6 chiffres',
                         counterText: '',
                       ),
                       onSubmitted: (_) => _verify(),
@@ -108,7 +107,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     onPressed: _busy ? null : (_codeSent ? _verify : _send),
                     child: _busy
                         ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2))
-                        : Text(_codeSent ? 'Valider le code' : 'Recevoir le lien de connexion'),
+                        : Text(_codeSent ? 'Valider le code' : 'Recevoir mon code'),
                   ),
                   if (_codeSent)
                     TextButton(
