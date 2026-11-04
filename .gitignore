@@ -1,0 +1,32 @@
+# Flutter / Dart
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/build/
+app/pubspec.lock
+app/**/Generated*
+app/ios/Pods/
+app/ios/.symlinks/
+app/android/.gradle/
+app/android/local.properties
+app/android/key.properties
+*.jks
+*.keystore
+
+# Supabase CLI
+supabase/.temp/
+supabase/.branches/
+
+# Python
+__pycache__/
+.venv/
+
+# Secrets
+.env
+.env.*
+
+# Divers
+.DS_Store
+.idea/
+.vscode/
