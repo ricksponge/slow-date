@@ -141,6 +141,10 @@ waiting ──1er message──▶ talking ──RDV accepté──▶ date_conf
 PGHOST=localhost PGUSER=postgres ./supabase/tests/run_local.sh
 ```
 
+`scripts/e2e_supabase.py` teste le **vrai projet** par les mêmes API que l'app (clé publishable + connexion utilisateur) : 2 comptes de test, profils, photo dans le bucket privé, découverte, match, messages, photos refusées puis dévoilées, RDV, tentatives de triche. Les comptes sont supprimés à la fin.
+
+> État au 4 novembre 2026 : base nettoyée, migrations appliquées, 35 357 communes et 211 114 liens de voisinage importés depuis les contours `gregoiredavid/france-geojson` (2018, faute d'accès à geo.api.gouv.fr depuis l'environnement de déploiement). Pour des communes à jour (fusions depuis 2019, codes postaux), relancer `scripts/import_communes.py` depuis une machine qui a accès à geo.api.gouv.fr.
+
 ---
 
 ## Pistes pour la suite
