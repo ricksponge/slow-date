@@ -144,15 +144,13 @@ class _ChatScreenState extends State<ChatScreen> {
           title: Text('Signaler $_otherName'),
           content: SingleChildScrollView(
             child: Column(mainAxisSize: MainAxisSize.min, children: [
-              for (final r in reasons)
-                RadioListTile<String>(
-                  value: r,
-                  groupValue: reason,
-                  title: Text(r),
-                  dense: true,
-                  contentPadding: EdgeInsets.zero,
-                  onChanged: (v) => setLocal(() => reason = v!),
-                ),
+              DropdownButtonFormField<String>(
+                initialValue: reason,
+                decoration: const InputDecoration(labelText: 'Motif'),
+                items: [for (final r in reasons) DropdownMenuItem(value: r, child: Text(r))],
+                onChanged: (v) => setLocal(() => reason = v ?? reason),
+              ),
+              const SizedBox(height: 12),
               TextField(
                 controller: details,
                 maxLines: 3,
